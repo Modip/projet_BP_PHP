@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="mystyle.css"/>
-    <title>Creation compte</title>
+    <link rel="stylesheet" href="../public/css/mystyle.css"/>
+    <title>Creation client</title>
 </head>
 
 <body>
@@ -103,7 +103,7 @@
                 <input type="text" name="loginmor" id="loginmor">
                 <label for="" id="contrloginmor" class="contr">Veillez saisir le login</label>
                 <label for="passwordmor">Password</label>
-                <input type="password" name="password" id="passwordmor">
+                <input type="password" name="passwordmor" id="passwordmor">
                 <label for="" id="contrpasswordmor" class="contr">Veillez saisir le mot de passe</label>
             </fieldset>
         </aside>
@@ -114,7 +114,7 @@
     </form>
 
 
-    <script src="client.js "></script>
+    <script src="../public/js/client.js "></script>
 </body>
 
 </html>

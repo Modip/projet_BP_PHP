@@ -1,14 +1,8 @@
 <?php
+require_once '../model/comptdb.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=bp2', 'root', '');
-//Recuperer des donnes dans la base
-$val1 = $pdo->query('SELECT * FROM client_physique')->fetchAll();
-$val2 = $pdo->query('SELECT * FROM client_moral')->fetchAll();
-$valagence = $pdo->query('SELECT * FROM agence')->fetchAll();
-$valcompte = $pdo->query('SELECT * FROM type_compte')->fetchAll();
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,7 +10,7 @@ $valcompte = $pdo->query('SELECT * FROM type_compte')->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="mystyle.css" />
+    <link rel="stylesheet" href="../public/css/mystyle.css" />
     <title>Creation compte</title>
 </head>
 
@@ -43,25 +37,36 @@ $valcompte = $pdo->query('SELECT * FROM type_compte')->fetchAll();
                     <legend>Client Physique </legend>
                     <select name="idClient" id="idClient">
                         <option value="">Clients</option>
-                        <!-- Afficher les données recuperer et stocker dans la variable val1 -->
-                        <?php foreach ($val1 as $client) { ?>
-                            <option value="<?php echo $client['id'] ?>"><?php echo $client['prenom'] . ' ' . $client['nom'] ?></option>
-                        <?php } ?>
+                        <!-- Afficher les clients recuperer par la fonction du meme nom -->
+                        <?php
+                        
+                        $clients = afficherClient();
+                         foreach ($clients as $client) { 
+                         echo  "<option value='$client'[0]'>$client[1]</option>";
+                         }
+                        ?>
                     </select> <br>
 
                     <select name="agence" id="idagence">
                         <option value="">Agence</option>
-                        <?php foreach ($valagence as $agence) { ?>
-                            <option value="<?php echo $agence['id'] ?>"><?php echo $agence['nom'] ?></option>
-                        <?php } ?>
-
+                    <!--afficher les agences grace à la fonction afficherAgence --> 
+                        <?php
+                        $agences = afficherAgence();
+                         foreach ($agences as $agence) { 
+                          echo  "<option value='$agence[0]'>$agence[1]</option>";
+                         }
+                        ?>
                     </select> <br>
 
                     <select name="typecompte" id="chx" onchange="return chwcompt()">
                         <option value="0">Type de Compte</option>
-                        <?php foreach ($valcompte as $compte) { ?>
-                            <option value="<?php echo $compte['id'] ?>"><?php echo $compte['libelle'] ?></option>
-                        <?php } ?>
+                        <!--afficher les agences grace à la fonction afficherAgence -->
+                        <?php 
+                        $typecomptes = affichertypecompte();
+                         foreach ($typecomptes as $typecompte) { 
+                          echo  "<option value='$typecompte[0]'>$typecompte[1]</option>";
+                         }
+                        ?>
                     </select> <br>
 
                     <label for="cle"> Clé RIB</label>
@@ -88,7 +93,7 @@ $valcompte = $pdo->query('SELECT * FROM type_compte')->fetchAll();
                         <label for="date">Date de déblocage</label>
                         <input type="date" name="datedeb" id="datedeb">
                     </div>
-
+                    
                 </fieldset>
             </main>
             <aside id="clientmoral">
@@ -119,7 +124,7 @@ $valcompte = $pdo->query('SELECT * FROM type_compte')->fetchAll();
             </div>
         </div>
     </form>
-    <script src="compt.js"></script>
+    <script src="../public/js/compt.js"></script>
 
 </body>
 

@@ -1,11 +1,11 @@
 <?php
 $pdo = new PDO('mysql:host=localhost;dbname=bp2','root','');
-/*generer un numero de compte
+//generer un numero de compte
 function getnumcompte($idagence, $idclerib){
    return  $idagence.$idclerib;
  }
  $numcompte = getnumcompte(1,1);
-*/
+
 //Insertion dans la base
 if(isset($_POST['ajouter'])){
    
@@ -13,7 +13,7 @@ if(isset($_POST['ajouter'])){
 
    if($typeclient=='1'){
 
-      $a = $pdo->exec("INSERT INTO `compte_client`(`id`, `numeroCte`, `clerib`, `agence_id`, `solde`, `etat`, `cltphy_id`, `cltmoral_id`, `typeCompte_id`, `datecrea`, `dateferme`, `datefertempo`, `datereouv`) VALUES (null,NULL,$clerib,null,$solde,null,$typeclient,null,$typecompte,$dateou,null,null,null)");
+      $a = $pdo->exec("INSERT INTO `compte_client`(`id`, `numeroCte`, `clerib`, `agence_id`, `solde`, `etat`, `cltphy_id`, `cltmoral_id`, `typeCompte_id`, `datecrea`, `dateferme`, `datefertempo`, `datereouv`) VALUES (null,$numcompte,$clerib,null,$solde,null,$typeclient,null,$typecompte,$dateou,null,null,null)");
       
       var_dump($a);
    }

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="view/mystyle.css" />
     <title>Creation compte</title>
 </head>
+
 <body>
 
     <header class="topbar">
